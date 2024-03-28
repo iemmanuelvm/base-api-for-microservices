@@ -1,0 +1,34 @@
+cmd
+pip install alembic sqlalchemy
+alembic init alembic
+
+alembic.ini > add 
+sqlalchemy.url = postgresql://usuario:contraseña@localhost/nombre_de_tu_base_de_datos
+
+add in
+alembic/env.py to use my models
+
+import sys
+import os
+import models
+
+add
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+and finally we change 
+target_metadata = None
+
+by
+target_metadata = models.Base.metadata
+
+
+cmd
+alembic revision --autogenerate -m "Migrations field for status on todos"
+alembic upgrade head
+
+how to revert a migration
+alembic history
+alembic downgrade d9f444c717db
+
+to revert until base 
+alembic downgrade base
