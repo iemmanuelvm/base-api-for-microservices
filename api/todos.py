@@ -1,4 +1,7 @@
 import sys
+
+from api.auth import get_current_user, get_user_exception
+
 sys.path.append("..")
 
 from typing import Optional
@@ -7,7 +10,7 @@ import models
 from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field
-from .auth import get_current_user, get_user_exception
+# from .auth import get_user_exception#get_current_user, get_user_exception
 
 
 router = APIRouter(
@@ -143,19 +146,3 @@ def successful_response(status_code: int):
 
 def http_exception():
     return HTTPException(status_code=404, detail="Todo not found")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
